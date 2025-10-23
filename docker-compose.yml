@@ -1,4 +1,4 @@
-ervices:
+services:
   mysql:
     image: mysql:8.0
     restart: always
