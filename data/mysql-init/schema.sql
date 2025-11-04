@@ -12,10 +12,10 @@
 -- ==========================================================
 CREATE TABLE IF NOT EXISTS blocks (
   number BIGINT PRIMARY KEY COMMENT '区块号',
-  hash VARCHAR(66) NOT NULL UNIQUE COMMENT '区块哈希',
-  parent_hash VARCHAR(66) DEFAULT NULL COMMENT '父区块哈希',
+  hash CHAR(66) NOT NULL UNIQUE COMMENT '区块哈希',
+  parent_hash CHAR(66) DEFAULT NULL COMMENT '父区块哈希',
   timestamp DATETIME NOT NULL COMMENT '出块时间',
-  miner VARCHAR(66) DEFAULT NULL COMMENT '出块矿工地址',
+  miner CHAR(66) DEFAULT NULL COMMENT '出块矿工地址',
   gas_used BIGINT DEFAULT 0 COMMENT '已使用 Gas',
   gas_limit BIGINT DEFAULT 0 COMMENT 'Gas 上限',
   tx_count INT DEFAULT 0 COMMENT '区块内交易数量',
@@ -29,10 +29,10 @@ CREATE TABLE IF NOT EXISTS blocks (
 -- 2. 交易表（Transactions）
 -- ==========================================================
 CREATE TABLE IF NOT EXISTS transactions (
-  hash VARCHAR(66) PRIMARY KEY COMMENT '交易哈希',
+  hash CHAR(66) PRIMARY KEY COMMENT '交易哈希',
   block_number BIGINT NOT NULL COMMENT '所属区块号',
-  from_address VARCHAR(66) DEFAULT NULL COMMENT '发送方地址',
-  to_address VARCHAR(66) DEFAULT NULL COMMENT '接收方地址',
+  from_address CHAR(66) DEFAULT NULL COMMENT '发送方地址',
+  to_address CHAR(66) DEFAULT NULL COMMENT '接收方地址',
   value DECIMAL(38,0) DEFAULT 0 COMMENT '交易金额（Wei）',
   gas_price DECIMAL(38,0) DEFAULT 0 COMMENT '交易 Gas 价格（Wei）',
   input_data MEDIUMTEXT COMMENT '交易输入数据（十六进制）',
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 -- 3. 回执表（Receipts）
 -- ==========================================================
 CREATE TABLE IF NOT EXISTS receipts (
-  tx_hash VARCHAR(66) PRIMARY KEY COMMENT '交易哈希',
+  tx_hash CHAR(66) PRIMARY KEY COMMENT '交易哈希',
   status BOOLEAN DEFAULT TRUE COMMENT '执行状态（1=成功,0=失败）',
   gas_used BIGINT DEFAULT 0 COMMENT '实际使用的 Gas',
   logs JSON NULL COMMENT '事件日志数据',
