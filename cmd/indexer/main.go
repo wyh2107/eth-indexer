@@ -63,7 +63,7 @@ func main() {
 	if err != nil {
 		log.Fatal("RPC ChainId failed:%v", err)
 	}
-	log.Printf("network chain id: %s", networkChainID)
+	log.Printf("network chain id: %s", bigIntToString(networkChainID))
 
 	fmt.Println("indexer starting...")
 	// 换成从 DB/Redis 读取上次断点
